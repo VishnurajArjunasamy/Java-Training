@@ -16,6 +16,11 @@ public class MultiThreading5 {
 		
 		t1.start();
 		t1.start();
-		
 	}
 }
+
+/*
+ * It throws IllegalThreadStateException as the state of the thread 
+ * changed to Runnable from New ,We cannot start Runnable state thread 
+ * again,new state is only possible for thread start.
+ */

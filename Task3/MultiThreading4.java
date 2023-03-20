@@ -2,16 +2,17 @@ package Task3;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 class Clock {
 	int hours,minutes,seconds;
-	Date d = new Date();
-	@SuppressWarnings("deprecation")
+	LocalDateTime d = LocalDateTime.now();
+
 	Clock(){
-		hours = d.getHours();
-		minutes=d.getMinutes();
-		seconds=d.getSeconds();
+		hours = d.getHour();
+		minutes=d.getMinute();
+		seconds=d.getSecond();
 	}
 	
 	void calcTime() {
@@ -23,13 +24,10 @@ class Clock {
 			
 			if(minutes==60) {
 				minutes=0;
-				seconds=0;
 				hours++;
 			}
 			
 			if(hours==24) {
-				minutes=0;
-				seconds=0;
 				hours=0;
 			}
 			System.out.println(hours+":"+minutes+":"+seconds);

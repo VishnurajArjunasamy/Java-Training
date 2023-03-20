@@ -1,30 +1,38 @@
 package Task3;
 
+import java.util.Scanner;
 
 class CharacterCounter {
-	int counter;
- 	void charCounter(char c) {
+	int count;
+ 	void charCounter(char letter) {
  		try {
- 			if(Character.isDigit(c)) {
+ 			if(Character.isDigit(letter)) {
  				throw new Exception();
  			}
- 			counter++;
+ 			count++;
  		}
  		catch(Exception e) {
  			e.printStackTrace();
+ 		}
+ 		finally {
+ 			System.out.println(count);
  		}
 	}
 }
 
 public class MultiThreading6 {
 	public static void main(String[] args) {
-		CharacterCounter cc = new CharacterCounter();
-		String s = "qwe6rty";
-		
-		for(int i=0;i<s.length();i++) {
-			cc.charCounter(s.charAt(i));
+		CharacterCounter charCount = new CharacterCounter();
+		System.out.println("Enter a character:");
+		Scanner inp = new Scanner(System.in);
+		while(true) {
+			charCount.charCounter(inp.next().charAt(0));
 		}
-	
-		System.out.println(cc.counter);
 	}
 }
+
+/*
+ * From the input ,getting the char alone and passing to the char counter
+ * If the input is char count get incremented and displayed
+ * If not ,then an exception thrown
+ */

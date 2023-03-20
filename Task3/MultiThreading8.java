@@ -5,12 +5,14 @@ class MyThread extends Thread{
 	MyThread(StringBuffer sb){
 		this.sb=sb;
 	}
-	synchronized public void run() {
-		for(int i=0;i<100;i++) {
-			System.out.print(sb);
+	public void run() {
+		synchronized(sb) {
+			for(int i=0;i<100;i++) {
+				System.out.print(sb);
+			}
+			char c = sb.charAt(0);
+			sb.setCharAt(0, ++c);
 		}
-		char c = sb.charAt(0);
-		sb.setCharAt(0, ++c);
 	}
 }
 
