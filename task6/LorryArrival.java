@@ -23,8 +23,6 @@ public class LorryArrival {
 
 		
 		Scanner inp = new Scanner(System.in);
-//		BufferedReader reader = new BufferedReader(
-//	            new InputStreamReader(System.in));
 		
 		try {
 			System.out.println("Enter ditance to be covered->");
@@ -35,11 +33,9 @@ public class LorryArrival {
 			
 			System.out.println("Enter the date of the lorry deporting->");
 			date=LocalDate.parse(inp.next());//2023-03-23
-//			date=LocalDate.parse("2023-03-23");
 
 			System.out.println("Enter the time of the lorry deporting->");
 			time=LocalTime.parse(inp.next());//02:01:50.63
-//			time=LocalTime.parse("02:01:50.63");
 			
 			dateTime=LocalDateTime.parse(date+"T"+time);
 
@@ -97,7 +93,6 @@ class Destination {
 			System.out.println("Starting Date " + d.plusDays(1).format(format)); 
 		}
 		else {
-//			d=d.minusDays(1);
 			System.out.println("Starting Date " + d.format(format)); 
 		}
 		
