@@ -10,73 +10,46 @@ import com.mysql.cj.xdevapi.Result;
 
 public class TableCreation {
 	public static void main(String[] args) {
-		Connection con = JDBCUtility.getConnection();
+		Connection connnection = JDBCUtility.getConnection();
 		ResultSet result;
-		
+
 		try {
-			
-			Statement stmt = con.createStatement();
-			
-			//creating table
-			stmt.executeUpdate("create table employee(empno integer,ename varchar(20),deptno integer)"); 
-			
-			//insert values into the table
-			
-			int row1=stmt.executeUpdate("insert into employee values (1001,'ram',100)");
-			int row2=stmt.executeUpdate("insert into employee values (1002,'arun',100)");
-			int row3=stmt.executeUpdate("insert into employee values (1003,'pooja',200)");
-			
-			
-			//displaying table
+			Statement statement = connnection.createStatement();
 
-			result = stmt.executeQuery("select * from employee");
-			
-			while(result.next()) {
-				System.out.println(result.getInt(1)+" "+result.getString(2)+" "+result.getInt(3));
+			// creating table
+			statement
+					.executeUpdate("create table employee(empno integer PRIMARY KEY,ename varchar(20),deptno integer)");
+
+			// insert values into the table
+			int row1 = statement.executeUpdate("insert into employee values (1001,'ram',100)");
+			int row2 = statement.executeUpdate("insert into employee values (1002,'arun',100)");
+			int row3 = statement.executeUpdate("insert into employee values (1003,'pooja',200)");
+
+			// displaying table
+			result = statement.executeQuery("select * from employee");
+
+			while (result.next()) {
+				System.out.println(result.getInt(1) + " " + result.getString(2) + " " + result.getInt(3));
 			}
-			System.out.println();
-			
-			
-			//dynamically constructing query
-			
-	
-			PreparedStatement updateEmployeeName;
-			
-			String updateEmployeeNameStr="update employee set ename=? where empno=?";
-			
 
-			updateEmployeeName = con.prepareStatement(updateEmployeeNameStr);
-			
+			// dynamically constructing query
+			PreparedStatement preparedStatement;
+			String updateEmployeeNameStr = "update employee set ename=? where empno=?";
+			preparedStatement = connnection.prepareStatement(updateEmployeeNameStr);
+			String[] employeeName = { "Dhev", "Shyam", "Rohan" };
+			preparedStatement.setString(1, employeeName[0]);
+			preparedStatement.setInt(2, 1001);
+			preparedStatement.executeUpdate();
+			preparedStatement.setString(1, employeeName[1]);
+			preparedStatement.setInt(2, 1002);
+			preparedStatement.executeUpdate();
+			result = statement.executeQuery("select * from employee");
 
-			String[] employeeName= {"Dhev","Shyam","Rohan"};
-		
-			
-			updateEmployeeName.setString(1, employeeName[0]);
-			updateEmployeeName.setInt(2, 1001);
-
-			updateEmployeeName.executeUpdate();
-
-			updateEmployeeName.setString(1, employeeName[1]);
-			updateEmployeeName.setInt(2, 1002);
-
-			updateEmployeeName.executeUpdate();
-			
-			result = stmt.executeQuery("select * from employee");
-			while(result.next()) {
-				System.out.println(result.getInt(1)+" "+result.getString(2)+" "+result.getInt(3));
-			}
-			
 //			stmt.executeUpdate("drop table employee");
-			
-			JDBCUtility.closeConnection(null,null);
-			
-		
-			
-	
+			JDBCUtility.closeConnection(null, null);
+
 		} catch (SQLException e) {
-			
 			e.printStackTrace();
-			
 		}
 	}
 }
