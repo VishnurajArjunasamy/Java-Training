@@ -15,16 +15,12 @@ public class TableCreation {
 
 		try {
 			Statement statement = connnection.createStatement();
-
 			// creating table
-			statement
-					.executeUpdate("create table employee(empno integer PRIMARY KEY,ename varchar(20),deptno integer)");
-
+			statement.executeUpdate("create table employee(empno integer PRIMARY KEY,ename varchar(20),deptno integer)");
 			// insert values into the table
 			int row1 = statement.executeUpdate("insert into employee values (1001,'ram',100)");
 			int row2 = statement.executeUpdate("insert into employee values (1002,'arun',100)");
 			int row3 = statement.executeUpdate("insert into employee values (1003,'pooja',200)");
-
 			// displaying table
 			result = statement.executeQuery("select * from employee");
 
@@ -44,8 +40,6 @@ public class TableCreation {
 			preparedStatement.setInt(2, 1002);
 			preparedStatement.executeUpdate();
 			result = statement.executeQuery("select * from employee");
-
-//			stmt.executeUpdate("drop table employee");
 			JDBCUtility.closeConnection(null, null);
 
 		} catch (SQLException e) {
