@@ -6,12 +6,10 @@ import java.io.IOException;
 
 public class IOStream6 {
 	public static void main(String[] args) throws IOException {
-		
-		BufferedReader br = new BufferedReader(new FileReader("Task7/src/task7/renamed.txt"));
-		
+		BufferedReader bufferReader = new BufferedReader(new FileReader("Task7/src/task7/renamed.txt"));
 		String line;
 
-		while ((line = br.readLine()) != null) {
+		while ((line = bufferReader.readLine()) != null) {
 			System.out.println(line);
 		}
 	}

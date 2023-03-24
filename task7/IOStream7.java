@@ -8,24 +8,25 @@ import java.io.IOException;
 
 public class IOStream7 {
 	public static void main(String[] args) throws IOException {
-
-		BufferedReader inputStream = null;
-		PrintWriter outputStream = null;
+		BufferedReader bufferReader = null;
+		PrintWriter printWriter = null;
 
 		try {
-			inputStream = new BufferedReader(new FileReader("/Users/vishnuraj/eclipse-workspace/Task7/src/readfile.txt"));
-			outputStream = new PrintWriter(new FileWriter("/Users/vishnuraj/eclipse-workspace/Task7/src/writefile.txt"));
+			bufferReader = new BufferedReader(new FileReader("Task7/src/readfile.txt"));
+			printWriter = new PrintWriter(new FileWriter("Task7/src/writefile.txt"));
 
 			int character;
-			while ((character = inputStream.read()) != -1) {
-				outputStream.println(character);
+			while ((character = bufferReader.read()) != -1) {
+				printWriter.println(character);
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		} finally {
-			if (inputStream != null) {
-				inputStream.close();
+			if (bufferReader != null) {
+				bufferReader.close();
 			}
-			if (outputStream != null) {
-				outputStream.close();
+			if (printWriter != null) {
+				printWriter.close();
 			}
 		}
 	}
