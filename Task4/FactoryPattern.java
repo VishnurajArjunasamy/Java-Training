@@ -4,12 +4,18 @@ import java.util.Scanner;
 
 //Client Specifying what type of object he wants to the factory
 public class FactoryPattern {
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		ShoeFactory factory = new ShoeFactory();
 		Scanner inp = new Scanner(System.in);
 		System.out.println("Enter the type of sneaker");
-		Sneakers shoe = factory.createSneaker(inp.next());
+		Sneakers shoe = null;
+		try {
+			shoe = factory.createSneaker(inp.next());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		shoe.sneakerType();
+		inp.close();
 	}
 }
 
@@ -18,7 +24,7 @@ class ShoeFactory {
 	Sneakers sneaker;
 
 	public Sneakers createSneaker(String type) throws Exception {
-		sneaker = (Sneakers) Class.forName(type).newInstance();
+		sneaker = (Sneakers) Class.forName(type).getConstructor().newInstance();
 		return sneaker;
 	}
 }

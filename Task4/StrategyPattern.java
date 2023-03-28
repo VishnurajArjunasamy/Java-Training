@@ -66,6 +66,7 @@ public class StrategyPattern {
 		System.out.println("Enter brand name:");
 		Mobile mobile = (Mobile) Class.forName(inp.next()).getConstructor().newInstance();
 		ShowRoom showRoom = new ShowRoom(mobile);
+		inp.close();
 
 	}
 }

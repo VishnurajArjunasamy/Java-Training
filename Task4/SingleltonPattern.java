@@ -8,8 +8,8 @@ class Singleton {
 
 	}
 
-	// create obj will let only one obj creation
-	synchronized static Singleton createObj() {
+	// getInstance obj will let only one obj creation
+	synchronized static Singleton getInstance() {
 		if (singleObj == null) {
 			singleObj = new Singleton();
 		}
@@ -24,14 +24,14 @@ public class SingleltonPattern {
 		// creating two threads to access createObj
 		Thread t1 = new Thread() {
 			public void run() {
-				Singleton singleton = Singleton.createObj();
+				Singleton singleton = Singleton.getInstance();
 				System.out.println(singleton);
 			}
 		};
 
 		Thread t2 = new Thread() {
 			public void run() {
-				Singleton singleton = Singleton.createObj();
+				Singleton singleton = Singleton.getInstance();
 				System.out.println(singleton);
 			}
 		};
